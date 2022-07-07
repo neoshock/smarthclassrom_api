@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 @Entity
@@ -21,7 +24,7 @@ public class TipoUsuario {
     private long idTipoUsuario;
 
     @OneToMany(mappedBy = "tipoUsuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Usuario> usuarios;
+    private List<Usuarios> usuarios;
 
     private String nombre;
     private String descripcion;
@@ -55,11 +58,12 @@ public class TipoUsuario {
         this.descripcion = descripcion;
     }
 
-    public List<Usuario> getUsuarios() {
+    @JsonManagedReference
+    public List<Usuarios> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
+    public void setUsuarios(List<Usuarios> usuarios) {
         this.usuarios = usuarios;
     }
 

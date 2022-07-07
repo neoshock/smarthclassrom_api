@@ -1,5 +1,8 @@
 package com.appdist.biometric.service.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,11 +11,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
-@Table(name = "usuario")
-public class Usuario {
+@Table(name = "usuarios")
+public class Usuarios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,15 +34,28 @@ public class Usuario {
     private String telefono;
     private String email;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_tipo_usuario", nullable = false)
     private TipoUsuario tipoUsuario;
 
-    public Usuario() {
+    @JsonManagedReference
+    @OneToMany(mappedBy = "usuarios", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<UsuariosMaterias> usuariosMaterias;
+    
+    public Usuarios() {
 
     }
 
-    public Usuario(long id_usuario, String nombre, String apellido, String fingerprint, String telefono, String email) {
+    public List<UsuariosMaterias> getUsuariosMaterias() {
+        return usuariosMaterias;
+    }
+
+    public void setUsuariosMaterias(List<UsuariosMaterias> usuariosMaterias) {
+        this.usuariosMaterias = usuariosMaterias;
+    }
+
+    public Usuarios(long id_usuario, String nombre, String apellido, String fingerprint, String telefono, String email) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellido = apellido;
