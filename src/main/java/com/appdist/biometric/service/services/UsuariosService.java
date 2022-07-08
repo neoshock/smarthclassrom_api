@@ -26,7 +26,7 @@ public class UsuariosService {
     }
 
     public boolean userAuthentication(String fingerprint) {
-        return !usuariosRepository.userAuthentication(fingerprint);
+        return usuariosRepository.userAuthentication(fingerprint);
     }
 
 }

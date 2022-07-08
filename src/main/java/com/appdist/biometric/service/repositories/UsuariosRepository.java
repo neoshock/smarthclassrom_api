@@ -9,7 +9,7 @@ import com.appdist.biometric.service.models.Usuario;
 @Repository
 public interface UsuariosRepository extends CrudRepository<Usuario, Long> {
     
-    @Query(value = "select userAuthentication('?1')", nativeQuery = true)
+    @Query(value = "select userAuthentication(?1)", nativeQuery = true)
     boolean userAuthentication(String fingerprint);
 
 }
