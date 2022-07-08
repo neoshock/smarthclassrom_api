@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.appdist.biometric.service.models.Materias;
+import com.appdist.biometric.service.models.Materia;
 import com.appdist.biometric.service.services.MateriasService;
 
 @RestController
@@ -20,17 +20,17 @@ public class MateriasController {
     MateriasService materiasService;
     
     @GetMapping()
-    public ArrayList<Materias> getAllMaterias() {
+    public ArrayList<Materia> getAllMaterias() {
         return materiasService.getAllMaterias();
     }
 
     @GetMapping("/{id}")
-    public Materias getMateriaById(@PathVariable(value = "id") Long id) {
+    public Materia getMateriaById(@PathVariable(value = "id") Long id) {
         return materiasService.getMateriaById(id);
     }
 
     @PostMapping()
-    public Materias createMateria(@RequestBody Materias materia) {
+    public Materia createMateria(@RequestBody Materia materia) {
         try{
             return materiasService.createMateria(materia);
         }catch(Exception e){

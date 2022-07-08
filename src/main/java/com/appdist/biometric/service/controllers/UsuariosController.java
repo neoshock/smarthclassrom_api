@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.appdist.biometric.service.models.Usuarios;
+import com.appdist.biometric.service.models.Authentication;
+import com.appdist.biometric.service.models.Usuario;
 import com.appdist.biometric.service.services.UsuariosService;
 
 @RestController
@@ -21,7 +22,7 @@ public class UsuariosController {
     UsuariosService usuariosService;
 
     @GetMapping()
-    public ArrayList<Usuarios> getAllUsuarios() {
+    public ArrayList<Usuario> getAllUsuarios() {
         try {
             return usuariosService.getAllUsuarios();
         } catch (Exception e) {
@@ -30,17 +31,22 @@ public class UsuariosController {
     }
 
     @GetMapping("/{id}")
-    public Usuarios getUsuarioById(@PathVariable(value = "id") Long id) {
+    public Usuario getUsuarioById(@PathVariable(value = "id") Long id) {
         return usuariosService.getUsuarioById(id);
     }
 
     @PostMapping()
-    public Usuarios createUsuario(@RequestBody Usuarios usuario) {
+    public Usuario createUsuario(@RequestBody Usuario usuario) {
         try {
             return usuariosService.createUsuario(usuario);
         } catch (Exception e) {
             usuario.setNombre(e.getMessage());
             return usuario;
         }
+    }
+
+    @PostMapping("/authentication")
+    public boolean userAuthentication(@RequestBody Authentication authentication) {
+        return usuariosService.userAuthentication(authentication.getFinger());
     }
 }

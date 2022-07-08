@@ -24,7 +24,7 @@ public class TipoUsuario {
     private long idTipoUsuario;
 
     @OneToMany(mappedBy = "tipoUsuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Usuarios> usuarios;
+    private List<Usuario> usuarios;
 
     private String nombre;
     private String descripcion;
@@ -59,11 +59,11 @@ public class TipoUsuario {
     }
 
     @JsonManagedReference
-    public List<Usuarios> getUsuarios() {
+    public List<Usuario> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<Usuarios> usuarios) {
+    public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 

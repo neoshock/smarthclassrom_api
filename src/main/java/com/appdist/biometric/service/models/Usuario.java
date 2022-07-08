@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuarios {
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class Usuarios {
     @OneToMany(mappedBy = "usuarios", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UsuariosMaterias> usuariosMaterias;
     
-    public Usuarios() {
+    public Usuario() {
 
     }
 
@@ -55,7 +55,7 @@ public class Usuarios {
         this.usuariosMaterias = usuariosMaterias;
     }
 
-    public Usuarios(long id_usuario, String nombre, String apellido, String fingerprint, String telefono, String email) {
+    public Usuario(long id_usuario, String nombre, String apellido, String fingerprint, String telefono, String email) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellido = apellido;

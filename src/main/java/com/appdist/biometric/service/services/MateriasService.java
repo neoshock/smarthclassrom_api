@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.appdist.biometric.service.models.Materias;
+import com.appdist.biometric.service.models.Materia;
 import com.appdist.biometric.service.repositories.MateriasRepository;
 
 @Service
@@ -14,15 +14,15 @@ public class MateriasService {
     @Autowired
     MateriasRepository materiasRepository;
 
-    public ArrayList<Materias> getAllMaterias() {
-        return (ArrayList<Materias>) materiasRepository.findAll();
+    public ArrayList<Materia> getAllMaterias() {
+        return (ArrayList<Materia>) materiasRepository.findAll();
     }
 
-    public Materias getMateriaById(Long id) {
+    public Materia getMateriaById(Long id) {
         return materiasRepository.findById(id).get();
     }
 
-    public Materias createMateria(Materias materia) {
+    public Materia createMateria(Materia materia) {
         return materiasRepository.save(materia);
     }
     

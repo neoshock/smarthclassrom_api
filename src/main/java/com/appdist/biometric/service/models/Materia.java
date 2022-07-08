@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "materias")
-public class Materias {
+public class Materia {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +30,10 @@ public class Materias {
     @OneToMany(mappedBy = "materias", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UsuariosMaterias> usuariosMaterias;
 
-    public Materias() {
+    public Materia() {
     }
 
-    public Materias(long idMateria, String nombre, int creditos) {
+    public Materia(long idMateria, String nombre, int creditos) {
         this.idMateria = idMateria;
         this.nombre = nombre;
         this.creditos = creditos;

@@ -24,17 +24,17 @@ public class UsuariosMaterias {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuarios usuarios;
+    private Usuario usuarios;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_materia", nullable = false)
-    private Materias materias;
+    private Materia materias;
 
     public UsuariosMaterias() {
     }
 
-    public UsuariosMaterias(final long id_usuario_materia, final Usuarios usuarios, final Materias materias) {
+    public UsuariosMaterias(final long id_usuario_materia, final Usuario usuarios, final Materia materias) {
         this.id_usuario_materia = id_usuario_materia;
         this.usuarios = usuarios;
         this.materias = materias;
@@ -48,19 +48,19 @@ public class UsuariosMaterias {
         this.id_usuario_materia = id_usuario_materia;
     }
 
-    public Usuarios getUsuarios() {
+    public Usuario getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(final Usuarios usuarios) {
+    public void setUsuarios(final Usuario usuarios) {
         this.usuarios = usuarios;
     }
 
-    public Materias getMaterias() {
+    public Materia getMaterias() {
         return materias;
     }
 
-    public void setMaterias(final Materias materias) {
+    public void setMaterias(final Materia materias) {
         this.materias = materias;
     }
 
