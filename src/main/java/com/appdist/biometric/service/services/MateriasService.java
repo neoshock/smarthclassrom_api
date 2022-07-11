@@ -25,5 +25,14 @@ public class MateriasService {
     public Materia createMateria(Materia materia) {
         return materiasRepository.save(materia);
     }
+
+    public Materia updateMateria(Long id, Materia materia) {
+        materia.setId_materia(id);
+        return materiasRepository.save(materia);
+    }
+
+    public void deleteMateria(Long id) {
+        materiasRepository.deleteById(id);
+    }
     
 }

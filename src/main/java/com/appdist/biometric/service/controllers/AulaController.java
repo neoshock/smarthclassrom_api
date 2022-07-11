@@ -8,49 +8,48 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.appdist.biometric.service.models.Materia;
-import com.appdist.biometric.service.services.MateriasService;
+import com.appdist.biometric.service.models.Aula;
+import com.appdist.biometric.service.services.AulaService;
 
 @RestController
-@RequestMapping("api/materias")
-public class MateriasController {
+@RequestMapping("/api/aulas")
+public class AulaController {
     @Autowired
-    MateriasService materiasService;
+    AulaService aulaService;
 
     @GetMapping()
-    public ArrayList<Materia> getAllMaterias() {
-        return materiasService.getAllMaterias();
+    public ArrayList<Aula> getAllAulas() {
+        return aulaService.getAllAulas();
     }
 
     @GetMapping("/{id}")
-    public Materia getMateriaById(@PathVariable(value = "id") Long id) {
-        return materiasService.getMateriaById(id);
+    public Aula getAulaById(@PathVariable(value = "id") Long id) {
+        return aulaService.getAulaById(id);
     }
 
     @PostMapping()
-    public Materia createMateria(@RequestBody Materia materia) {
+    public Aula createAula(Aula aula) {
         try {
-            return materiasService.createMateria(materia);
+            return aulaService.createAula(aula);
         } catch (Exception e) {
             return null;
         }
     }
 
     @PutMapping("/{id}")
-    public Materia updateMateria(@PathVariable(value = "id") Long id, @RequestBody Materia materia) {
+    public Aula updateAula(@PathVariable(value = "id") Long id, Aula aula) {
         try {
-            return materiasService.updateMateria(id, materia);
+            return aulaService.updateAula(id, aula);
         } catch (Exception e) {
             return null;
         }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteMateria(@PathVariable(value = "id") Long id) {
-        materiasService.deleteMateria(id);
+    public void deleteAula(@PathVariable(value = "id") Long id) {
+        aulaService.deleteAula(id);
     }
 }

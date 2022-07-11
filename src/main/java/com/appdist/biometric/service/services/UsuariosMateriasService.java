@@ -24,4 +24,14 @@ public class UsuariosMateriasService {
     public UsuariosMaterias createUsuariosMaterias(UsuariosMaterias usuariosMaterias) {
         return usuariosMateriaRepository.save(usuariosMaterias);
     }
+
+    public UsuariosMaterias updateUsuariosMaterias(Long id, UsuariosMaterias usuariosMaterias) {
+        usuariosMaterias.setId_usuario_materia(id);
+        return usuariosMateriaRepository.save(usuariosMaterias);
+    }
+
+    public void deleteUsuariosMaterias(Long id) {
+        usuariosMateriaRepository.deleteById(id);
+    }
+    
 }

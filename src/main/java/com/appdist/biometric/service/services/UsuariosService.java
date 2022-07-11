@@ -25,6 +25,15 @@ public class UsuariosService {
         return usuariosRepository.save(usuario);
     }
 
+    public Usuario updateUsuario(Long id, Usuario usuario) {
+        usuario.setId_usuario(id);
+        return usuariosRepository.save(usuario);
+    }
+
+    public void deleteUsuario(Long id) {
+        usuariosRepository.deleteById(id);
+    }
+
     public boolean userAuthentication(String fingerprint) {
         return usuariosRepository.userAuthentication(fingerprint);
     }

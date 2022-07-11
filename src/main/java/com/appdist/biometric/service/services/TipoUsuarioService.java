@@ -24,4 +24,13 @@ public class TipoUsuarioService {
     public TipoUsuario createTipoUsuario(TipoUsuario tipoUsuario) {
         return tipoUsuarioRepository.save(tipoUsuario);
     }
+
+    public TipoUsuario updateTipoUsuario(Long id, TipoUsuario tipoUsuario) {
+        tipoUsuario.setIdTipoUsuario(id);
+        return tipoUsuarioRepository.save(tipoUsuario);
+    }
+
+    public void deleteTipoUsuario(Long id) {
+        tipoUsuarioRepository.deleteById(id);
+    }
 }
