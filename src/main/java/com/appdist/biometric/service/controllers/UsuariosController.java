@@ -64,6 +64,6 @@ public class UsuariosController {
 
     @PostMapping("/authentication")
     public boolean userAuthentication(@RequestBody Authentication authentication) {
-        return true; //usuariosService.userAuthentication(authentication.getFinger());
+        return usuariosService.userAuthentication(authentication.getFinger());
     }
 }
