@@ -38,4 +38,8 @@ public class UsuariosService {
         return usuariosRepository.userAuthentication(fingerprint);
     }
 
+    public Usuario getUsuarioByEmailUsuario(String email) {
+        return usuariosRepository.getUsuarioByEmail(email);
+    }
+
 }

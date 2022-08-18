@@ -3,6 +3,7 @@ package com.appdist.biometric.service.controllers;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,4 +67,18 @@ public class UsuariosController {
     public boolean userAuthentication(@RequestBody Authentication authentication) {
         return usuariosService.userAuthentication(authentication.getFinger());
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> getUsuarioByEmail(@PathVariable(value = "email") String email) {
+        try {
+            if (usuariosService.getUsuarioByEmailUsuario(email) != null) {
+                return ResponseEntity.ok(usuariosService.getUsuarioByEmailUsuario(email));
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }

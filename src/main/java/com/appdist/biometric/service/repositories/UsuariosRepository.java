@@ -12,5 +12,8 @@ public interface UsuariosRepository extends CrudRepository<Usuario, Long> {
     @Query(value = "select userAuthentication(?1)", nativeQuery = true)
     boolean userAuthentication(String fingerprint);
 
+    @Query(value = "SELECT * FROM public.usuarios where email = ?1", nativeQuery = true)
+    Usuario getUsuarioByEmail(String email);
+
 }
     
