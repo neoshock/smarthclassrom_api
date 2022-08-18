@@ -20,8 +20,10 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 127)
     private long id_usuario;
+
+    private boolean isUserRegisterFingerprint;
 
     private String nombre;
     private String apellido;
@@ -105,5 +107,15 @@ public class Usuario {
     public Set<AccesoAula> getAccesosAula() {
         return accesosAula;
     }
+
+    public boolean isUserRegisterFingerprint() {
+        return isUserRegisterFingerprint;
+    }
+
+    public void setUserRegisterFingerprint(boolean isUserRegisterFingerprint) {
+        this.isUserRegisterFingerprint = isUserRegisterFingerprint;
+    }
+
+    
     
 }
