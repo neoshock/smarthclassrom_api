@@ -30,8 +30,8 @@ public class UsuarioUseCase {
         usuario.setEmail("pideun@gmail.com");
         usuario.setFingerprint("U}CY,aWJe8LG9ar,}6z!BpZdH$Aa[jQ,mwZCRU@gUx:cd-X)-atp8C?k?Gp8:#nTt5Uem4ydNQGRU!%GrY]-kRgrgEij4x]/_M==");
         usuario.setTelefono("0988848185");
-        tipoUsuario.setIdTipoUsuario(1L);
         usuario.setUserRegisterFingerprint(false);
+        tipoUsuario.setIdTipoUsuario(3L);
         usuario.setTipoUsuario(tipoUsuario);
 
         Usuario usuarioSaved = usuariosService.createUsuario(usuario);

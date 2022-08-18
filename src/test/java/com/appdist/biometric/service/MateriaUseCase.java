@@ -25,4 +25,44 @@ public class MateriaUseCase {
 
         assertNotEquals(null, materiaSaved);
     }
+
+    @Test
+    void hasUpdatedMateria(){
+        Materia materia = new Materia();
+        materia.setCreditos(20);
+        materia.setNombre("Matematicas");
+
+        Materia materiaSaved = materiasService.createMateria(materia);
+        materiaSaved.setCreditos(30);
+        materiaSaved.setNombre("Matematicas");
+        materiasService.updateMateria(materiaSaved.getId_materia(), materiaSaved);
+        Materia materiaUpdated = materiasService.getMateriaById(materiaSaved.getId_materia());
+        assertNotEquals(null, materiaUpdated);
+    }
+
+    @Test
+    void hasDeletedMateria(){
+        Materia materia = new Materia();
+        materia.setCreditos(20);
+        materia.setNombre("Matematicas");
+
+        Materia materiaSaved = materiasService.createMateria(materia);
+        materiasService.deleteMateria(materiaSaved.getId_materia());
+    }
+
+    @Test
+    void hasGetMateriaById(){
+        Materia materia = new Materia();
+        materia.setCreditos(20);
+        materia.setNombre("Matematicas");
+
+        Materia materiaSaved = materiasService.createMateria(materia);
+        Materia materiaById = materiasService.getMateriaById(materiaSaved.getId_materia());
+        assertNotEquals(null, materiaById);
+    }
+
+    @Test
+    void hasGetAllMaterias(){
+        assertNotEquals(null, materiasService.getAllMaterias());
+    }
 }
