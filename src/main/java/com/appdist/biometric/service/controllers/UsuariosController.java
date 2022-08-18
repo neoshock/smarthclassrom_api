@@ -49,12 +49,16 @@ public class UsuariosController {
     }
 
     @PutMapping("/{id}")
-    public Usuario updateUsuario(@PathVariable(value = "id") Long id, @RequestBody Usuario usuario) {
-        try {
-            return usuariosService.updateUsuario(id, usuario);
-        } catch (Exception e) {
-            usuario.setNombre(e.getMessage());
-            return usuario;
+    public ResponseEntity<?> updateUsuario(@PathVariable(value = "id") Long id, @RequestBody Usuario usuario) {
+        try{
+            Usuario usuarioUpdated = usuariosService.updateUsuario(id, usuario);
+            if (usuarioUpdated != null) {
+                return ResponseEntity.ok(usuarioUpdated);
+            } else {
+                return ResponseEntity.badRequest().body("Usuario no encontrado");
+            }
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
