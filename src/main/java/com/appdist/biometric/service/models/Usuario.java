@@ -20,7 +20,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false, length = 127)
+    @Column(unique = true, nullable = false, length = 125)
     private long id_usuario;
 
     private boolean isUserRegisterFingerprint;
