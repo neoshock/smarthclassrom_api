@@ -31,6 +31,8 @@ public class UsuarioUseCase {
         usuario.setFingerprint("U}CY,aWJe8LG9ar,}6z!BpZdH$Aa[jQ,mwZCRU@gUx:cd-X)-atp8C?k?Gp8:#nTt5Uem4ydNQGRU!%GrY]-kRgrgEij4x]/_M==");
         usuario.setTelefono("0988848185");
         tipoUsuario.setIdTipoUsuario(1L);
+        usuario.setUserRegisterFingerprint(false);
+        usuario.setTipoUsuario(tipoUsuario);
 
         Usuario usuarioSaved = usuariosService.createUsuario(usuario);
 
@@ -40,7 +42,7 @@ public class UsuarioUseCase {
     @Test
     void hasUserAuthenticated(){
         Authentication authentication = new Authentication();
-        authentication.setFinger("9u@S+]r!);Pnkyp4gtC8{L5Qw(A]*K");
+        authentication.setFinger("U}CY,aWJe8LG9ar,}6z!BpZdH$Aa[jQ,mwZCRU@gUx:cd-X)-atp8C?k?Gp8:#nTt5Uem4ydNQGRU!%GrY]-kRgrgEij4x]/_M==");
         boolean isAuthenticated = usuariosService.userAuthentication(authentication.getFinger());
         assertNotEquals(false, isAuthenticated);
     }
