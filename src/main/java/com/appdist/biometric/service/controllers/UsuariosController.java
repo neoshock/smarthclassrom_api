@@ -85,4 +85,20 @@ public class UsuariosController {
         }
     }
 
+    @PostMapping("/authentication/{id}/{state}")
+    public ResponseEntity<?> updateUsuarioAuthentication(@PathVariable(value = "id") Long id, @PathVariable(value = "state") boolean state) {
+        try {
+            Usuario usuario = usuariosService.getUsuarioById(id);
+            usuario.setUserRegisterFingerprint(state);
+            Usuario usuarioUpdated = usuariosService.updateUsuario(id, usuario);
+            if (usuarioUpdated != null) {
+                return ResponseEntity.ok(usuario);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }
