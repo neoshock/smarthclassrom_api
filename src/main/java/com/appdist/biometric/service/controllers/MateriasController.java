@@ -3,6 +3,7 @@ package com.appdist.biometric.service.controllers;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,5 +53,19 @@ public class MateriasController {
     @DeleteMapping("/{id}")
     public void deleteMateria(@PathVariable(value = "id") Long id) {
         materiasService.deleteMateria(id);
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> getMateriaByEmail(@PathVariable(value = "email") String email) {
+        try {
+            ArrayList<Materia> materias = materiasService.getMateriasByEmail(email);
+            if (materias != null || materias.size() > 0) {
+                return ResponseEntity.ok(materias);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Materia no encontrada");
+        }
     }
 }

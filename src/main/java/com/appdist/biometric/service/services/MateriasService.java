@@ -34,5 +34,9 @@ public class MateriasService {
     public void deleteMateria(Long id) {
         materiasRepository.deleteById(id);
     }
+
+    public ArrayList<Materia> getMateriasByEmail(String email) {
+        return materiasRepository.getMateriasByEmail(email);
+    }
     
 }
