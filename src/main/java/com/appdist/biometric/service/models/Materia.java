@@ -13,8 +13,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "materias")
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator.class,
+    property = "id_materia"
+)
 public class Materia {
 
     @Id
@@ -24,14 +32,14 @@ public class Materia {
 
     private String nombre;
     private int creditos;
-
-    @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    
+    @OneToMany(mappedBy = "materia")
     private List<UsuariosMaterias> usuariosMaterias;
 
-    @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "materia")
     private Set<Horario> horarios;
 
-    @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "materia")
     private Set<MateriaAula> materiaAulas;
 
     public Materia() {
@@ -60,17 +68,4 @@ public class Materia {
     public void setCreditos(int creditos) {
         this.creditos = creditos;
     }
-
-    public List<UsuariosMaterias> getUsuariosMaterias() {
-        return usuariosMaterias;
-    }
-
-    public Set<Horario> getHorarios() {
-        return horarios;
-    }
-
-    public Set<MateriaAula> getMateriaAulas() {
-        return materiaAulas;
-    }
-
 }

@@ -2,7 +2,6 @@ package com.appdist.biometric.service.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,10 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "usuarios_materias")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_usuario_materia")
 public class UsuariosMaterias {
 
     @Id
@@ -21,11 +22,11 @@ public class UsuariosMaterias {
     @Column(unique = true, nullable = false)
     private long id_usuario_materia;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "id_materia", nullable = false)
     private Materia materia;
 
@@ -44,8 +45,15 @@ public class UsuariosMaterias {
         this.usuario = usuario;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
     public void setMateria(Materia materia) {
         this.materia = materia;
     }
 
+    public Materia getMateria() {
+        return materia;
+    }
 }

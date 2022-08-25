@@ -59,13 +59,13 @@ public class MateriasController {
     public ResponseEntity<?> getMateriaByEmail(@PathVariable(value = "email") String email) {
         try {
             ArrayList<Materia> materias = materiasService.getMateriasByEmail(email);
-            if (materias != null || materias.size() > 0) {
+            if (materias != null && materias.size() > 0) {
                 return ResponseEntity.ok(materias);
             } else {
                 return ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Materia no encontrada");
+            return ResponseEntity.badRequest().body("Email no encontrado");
         }
     }
 }

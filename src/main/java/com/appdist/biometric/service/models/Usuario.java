@@ -14,8 +14,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "usuarios")
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator.class,
+    property = "id_usuario"
+)
 public class Usuario {
 
     @Id
@@ -36,8 +44,13 @@ public class Usuario {
     @JoinColumn(name = "id_tipo_usuario", nullable = false)
     private TipoUsuario tipoUsuario;
 
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario")
+    @JsonManagedReference
     private Set<AccesoAula> accesosAula;
+
+    @OneToMany(mappedBy = "usuario")
+    @JsonManagedReference
+    private Set<UsuariosMaterias> usuariosMaterias;
 
     public Usuario() {
 
@@ -104,10 +117,6 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Set<AccesoAula> getAccesosAula() {
-        return accesosAula;
-    }
-
     public boolean isUserRegisterFingerprint() {
         return isUserRegisterFingerprint;
     }
@@ -116,6 +125,4 @@ public class Usuario {
         this.isUserRegisterFingerprint = isUserRegisterFingerprint;
     }
 
-    
-    
 }
