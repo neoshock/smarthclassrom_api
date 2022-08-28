@@ -1,6 +1,7 @@
 package com.appdist.biometric.service.repositories;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.data.jpa.repository.JpaRepository;

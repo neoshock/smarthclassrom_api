@@ -77,8 +77,13 @@ public class UsuariosController {
     public ResponseEntity<?> userAuthentication(@PathVariable(value = "id") Integer id) {
         try{
             Object request = usuariosService.userAuthentication(id);
+            AuthRequest result = new AuthRequest();
             if (request != null) {
-                return ResponseEntity.ok(request);
+                result.setResult((Object[]) request);
+                HashMap requestResult = new HashMap<>();
+                requestResult.put("nombre", result.getResult()[0]);
+                requestResult.put("acceso_valido", result.getResult()[1]);
+                return ResponseEntity.ok(requestResult);
             }else {
                 return ResponseEntity.notFound().build();
             }

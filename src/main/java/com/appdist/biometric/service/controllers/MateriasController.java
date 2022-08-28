@@ -79,6 +79,7 @@ public class MateriasController {
             if (materias != null && materias.size() > 0) {
                 for (Materia m : materias) {
                     m.setUsuarios(null);
+                    m.setHorarios(null);
                 }
                 return ResponseEntity.ok(materias);
             } else {
