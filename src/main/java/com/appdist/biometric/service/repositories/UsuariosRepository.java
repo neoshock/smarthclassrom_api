@@ -1,6 +1,7 @@
 package com.appdist.biometric.service.repositories;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,8 +14,8 @@ import com.appdist.biometric.service.models.request.AuthRequest;
 @Repository
 public interface UsuariosRepository extends CrudRepository<Usuario, Serializable> {
     
-    @Query(value = "select * from userauthentication(?1)", nativeQuery = true)
-    AuthRequest userAuthentication(Long uid);
+    @Query(value = "select * from userauthentication(?1);", nativeQuery = true)
+    Object userAuthentication(Integer uid);
 
     @Query(value = "SELECT * FROM public.usuarios where email = ?1", nativeQuery = true)
     Usuario getUsuarioByEmail(String email);

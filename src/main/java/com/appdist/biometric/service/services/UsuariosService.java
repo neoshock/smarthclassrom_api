@@ -1,6 +1,7 @@
 package com.appdist.biometric.service.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class UsuariosService {
         usuariosRepository.deleteById(id);
     }
 
-    public AuthRequest userAuthentication(Long uid) {
+    public Object userAuthentication(Integer uid) {
         return usuariosRepository.userAuthentication(uid);
     }
 

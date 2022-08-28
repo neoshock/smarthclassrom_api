@@ -1,6 +1,8 @@
 package com.appdist.biometric.service.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,10 +73,10 @@ public class UsuariosController {
         usuariosService.deleteUsuario(id);
     }
 
-    @PostMapping("/authentication/{id}")
-    public ResponseEntity<?> userAuthentication(@PathVariable(value = "id") Long id) {
+    @GetMapping("/authentication/{id}")
+    public ResponseEntity<?> userAuthentication(@PathVariable(value = "id") Integer id) {
         try{
-            AuthRequest request = usuariosService.userAuthentication(id);
+            Object request = usuariosService.userAuthentication(id);
             if (request != null) {
                 return ResponseEntity.ok(request);
             }else {
