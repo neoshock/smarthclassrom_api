@@ -18,6 +18,7 @@ import com.appdist.biometric.service.models.Authentication;
 import com.appdist.biometric.service.models.Materia;
 import com.appdist.biometric.service.models.Usuario;
 import com.appdist.biometric.service.models.UsuarioResponse;
+import com.appdist.biometric.service.models.request.AuthRequest;
 import com.appdist.biometric.service.services.UsuariosService;
 
 @RestController
@@ -70,9 +71,18 @@ public class UsuariosController {
         usuariosService.deleteUsuario(id);
     }
 
-    @PostMapping("/authentication")
-    public boolean userAuthentication(@RequestBody Authentication authentication) {
-        return usuariosService.userAuthentication(authentication.getFinger());
+    @PostMapping("/authentication/{id}")
+    public ResponseEntity<?> userAuthentication(@PathVariable(value = "id") Long id) {
+        try{
+            AuthRequest request = usuariosService.userAuthentication(id);
+            if (request != null) {
+                return ResponseEntity.ok(request);
+            }else {
+                return ResponseEntity.notFound().build();
+            }
+        }catch(Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/email/{email}")

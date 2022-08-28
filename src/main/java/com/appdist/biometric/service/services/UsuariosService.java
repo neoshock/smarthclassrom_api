@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.appdist.biometric.service.models.Usuario;
+import com.appdist.biometric.service.models.request.AuthRequest;
 import com.appdist.biometric.service.repositories.UsuariosRepository;
 
 @Service
@@ -34,8 +35,8 @@ public class UsuariosService {
         usuariosRepository.deleteById(id);
     }
 
-    public boolean userAuthentication(String fingerprint) {
-        return usuariosRepository.userAuthentication(fingerprint);
+    public AuthRequest userAuthentication(Long uid) {
+        return usuariosRepository.userAuthentication(uid);
     }
 
     public Usuario getUsuarioByEmailUsuario(String email) {

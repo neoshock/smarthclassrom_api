@@ -8,12 +8,13 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.appdist.biometric.service.models.Usuario;
+import com.appdist.biometric.service.models.request.AuthRequest;
 
 @Repository
 public interface UsuariosRepository extends CrudRepository<Usuario, Serializable> {
     
-    @Query(value = "select userAuthentication(?1)", nativeQuery = true)
-    boolean userAuthentication(String fingerprint);
+    @Query(value = "select * from userauthentication(?1)", nativeQuery = true)
+    AuthRequest userAuthentication(Long uid);
 
     @Query(value = "SELECT * FROM public.usuarios where email = ?1", nativeQuery = true)
     Usuario getUsuarioByEmail(String email);
