@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.appdist.biometric.service.models.Materia;
+import com.appdist.biometric.service.models.request.MateriaRequest;
 import com.appdist.biometric.service.services.MateriasService;
 
 @RestController
@@ -33,20 +34,36 @@ public class MateriasController {
     }
 
     @PostMapping()
-    public Materia createMateria(@RequestBody Materia materia) {
+    public ResponseEntity<?> createMateria(@RequestBody MateriaRequest materia) {
         try {
-            return materiasService.createMateria(materia);
+            Materia materiaResult = new Materia();
+            materiaResult.setNombre(materia.getNombre());
+            materiaResult.setCreditos(materia.getCreditos());
+            materiaResult = materiasService.createMateria(materiaResult);
+            if (materiaResult != null) {
+                return ResponseEntity.ok(materiaResult);
+            } else {
+                return ResponseEntity.badRequest().body("Error al registrar la materia");
+            }
         } catch (Exception e) {
-            return null;
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PutMapping("/{id}")
-    public Materia updateMateria(@PathVariable(value = "id") Long id, @RequestBody Materia materia) {
+    public ResponseEntity<?> updateMateria(@PathVariable(value = "id") Long id, @RequestBody MateriaRequest materia) {
         try {
-            return materiasService.updateMateria(id, materia);
+            Materia materiaResult = new Materia();
+            materiaResult.setNombre(materia.getNombre());
+            materiaResult.setCreditos(materia.getCreditos());
+            materiaResult = materiasService.updateMateria(id, materiaResult);
+            if (materiaResult != null) {
+                return ResponseEntity.ok(materiaResult);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
         } catch (Exception e) {
-            return null;
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -60,12 +77,15 @@ public class MateriasController {
         try {
             ArrayList<Materia> materias = materiasService.getMateriasByEmail(email);
             if (materias != null && materias.size() > 0) {
+                for (Materia m : materias) {
+                    m.setUsuarios(null);
+                }
                 return ResponseEntity.ok(materias);
             } else {
                 return ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Email no encontrado");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

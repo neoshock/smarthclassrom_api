@@ -27,11 +27,11 @@ public class HorarioUseCase {
         LocalDateTime horaInicio = LocalDateTime.now();
         LocalDateTime horaFin = LocalDateTime.now();
 
-        materia.setId_materia(1L);
+        materia.setId(1L);
         horario.setDia_horario(diaHorario);
         horario.setHora_inicio(horaInicio);
         horario.setHora_fin(horaFin);
-        horario.setMateria(materia);
+        //horario.setMateria(materia);
 
         Horario horarioSaved = horarioService.createHorario(horario);
 
@@ -46,19 +46,19 @@ public class HorarioUseCase {
         LocalDateTime horaInicio = LocalDateTime.now();
         LocalDateTime horaFin = LocalDateTime.now();
 
-        materia.setId_materia(1L);
+        materia.setId(1L);
         horario.setDia_horario(diaHorario);
         horario.setHora_inicio(horaInicio);
         horario.setHora_fin(horaFin);
-        horario.setMateria(materia);
+        //horario.setMateria(materia);
 
         Horario horarioSaved = horarioService.createHorario(horario);
         horarioSaved.setDia_horario(diaHorario);
         horarioSaved.setHora_inicio(horaInicio);
         horarioSaved.setHora_fin(horaFin);
-        horarioSaved.setMateria(materia);
-        horarioService.updateHorario(horarioSaved.getId_horario(), horarioSaved);
-        Horario horarioUpdated = horarioService.getHorarioById(horarioSaved.getId_horario());
+        //horarioSaved.setMateria(materia);
+        horarioService.updateHorario(horarioSaved.getId(), horarioSaved);
+        Horario horarioUpdated = horarioService.getHorarioById(horarioSaved.getId());
         assertNotEquals(null, horarioUpdated);
     }
 
@@ -70,14 +70,14 @@ public class HorarioUseCase {
         LocalDateTime horaInicio = LocalDateTime.now();
         LocalDateTime horaFin = LocalDateTime.now();
 
-        materia.setId_materia(1L);
+        materia.setId(1L);
         horario.setDia_horario(diaHorario);
         horario.setHora_inicio(horaInicio);
         horario.setHora_fin(horaFin);
-        horario.setMateria(materia);
+        //horario.setMateria(materia);
 
         Horario horarioSaved = horarioService.createHorario(horario);
-        horarioService.deleteHorario(horarioSaved.getId_horario());
+        horarioService.deleteHorario(horarioSaved.getId());
     }
 
     @Test
@@ -88,14 +88,14 @@ public class HorarioUseCase {
         LocalDateTime horaInicio = LocalDateTime.now();
         LocalDateTime horaFin = LocalDateTime.now();
 
-        materia.setId_materia(1L);
+        materia.setId(1L);
         horario.setDia_horario(diaHorario);
         horario.setHora_inicio(horaInicio);
         horario.setHora_fin(horaFin);
-        horario.setMateria(materia);
+        //horario.setMateria(materia);
 
         Horario horarioSaved = horarioService.createHorario(horario);
-        Horario horarioById = horarioService.getHorarioById(horarioSaved.getId_horario());
+        Horario horarioById = horarioService.getHorarioById(horarioSaved.getId());
         assertNotEquals(null, horarioById);
     }
 

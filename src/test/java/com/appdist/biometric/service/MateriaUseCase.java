@@ -35,8 +35,8 @@ public class MateriaUseCase {
         Materia materiaSaved = materiasService.createMateria(materia);
         materiaSaved.setCreditos(30);
         materiaSaved.setNombre("Matematicas");
-        materiasService.updateMateria(materiaSaved.getId_materia(), materiaSaved);
-        Materia materiaUpdated = materiasService.getMateriaById(materiaSaved.getId_materia());
+        materiasService.updateMateria(materiaSaved.getId(), materiaSaved);
+        Materia materiaUpdated = materiasService.getMateriaById(materiaSaved.getId());
         assertNotEquals(null, materiaUpdated);
     }
 
@@ -47,7 +47,7 @@ public class MateriaUseCase {
         materia.setNombre("Matematicas");
 
         Materia materiaSaved = materiasService.createMateria(materia);
-        materiasService.deleteMateria(materiaSaved.getId_materia());
+        materiasService.deleteMateria(materiaSaved.getId());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class MateriaUseCase {
         materia.setNombre("Matematicas");
 
         Materia materiaSaved = materiasService.createMateria(materia);
-        Materia materiaById = materiasService.getMateriaById(materiaSaved.getId_materia());
+        Materia materiaById = materiasService.getMateriaById(materiaSaved.getId());
         assertNotEquals(null, materiaById);
     }
 

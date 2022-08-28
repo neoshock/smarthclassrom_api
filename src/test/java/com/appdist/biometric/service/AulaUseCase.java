@@ -35,8 +35,8 @@ public class AulaUseCase {
         aulaSaved.setNombre("Aula 2");
         aulaSaved.setCapacidad(30);
         aulaSaved.setFacultad("Facultad de Ingenieria");
-        aulasService.updateAula(aulaSaved.getId_aula(), aulaSaved);
-        Aula aulaUpdated = aulasService.getAulaById(aulaSaved.getId_aula());
+        aulasService.updateAula(aulaSaved.getId(), aulaSaved);
+        Aula aulaUpdated = aulasService.getAulaById(aulaSaved.getId());
         assertNotEquals(null, aulaUpdated);
     }
 
@@ -47,7 +47,7 @@ public class AulaUseCase {
         aula.setCapacidad(20);
         aula.setFacultad("Facultad de Ingenieria");
         Aula aulaSaved = aulasService.createAula(aula);
-        aulasService.deleteAula(aulaSaved.getId_aula());
+        aulasService.deleteAula(aulaSaved.getId());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class AulaUseCase {
         aula.setCapacidad(20);
         aula.setFacultad("Facultad de Ingenieria");
         Aula aulaSaved = aulasService.createAula(aula);
-        Aula aulaById = aulasService.getAulaById(aulaSaved.getId_aula());
+        Aula aulaById = aulasService.getAulaById(aulaSaved.getId());
         assertNotEquals(null, aulaById);
     }
 

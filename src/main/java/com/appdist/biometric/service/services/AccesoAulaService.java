@@ -27,7 +27,7 @@ public class AccesoAulaService {
     }
 
     public AccesoAula updateAccesoAula(Long id, AccesoAula accesoAula) {
-        accesoAula.setId_acceso_aula(id);
+        accesoAula.setId(id);
         return accesoAulaRepository.save(accesoAula);
     }
 

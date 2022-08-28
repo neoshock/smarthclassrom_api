@@ -27,7 +27,7 @@ public class MateriasService {
     }
 
     public Materia updateMateria(Long id, Materia materia) {
-        materia.setId_materia(id);
+        materia.setId(id);
         return materiasRepository.save(materia);
     }
 

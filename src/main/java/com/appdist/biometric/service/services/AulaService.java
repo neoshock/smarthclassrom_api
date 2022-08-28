@@ -27,7 +27,7 @@ public class AulaService {
     }
 
     public Aula updateAula(Long id, Aula aula) {
-        aula.setId_aula(id);
+        aula.setId(id);
         return aulaRepository.save(aula);
     }
 

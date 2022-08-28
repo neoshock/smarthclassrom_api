@@ -26,7 +26,7 @@ public class HorarioService {
     }
 
     public Horario updateHorario(Long id, Horario horario) {
-        horario.setId_horario(id);
+        horario.setId(id);
         return horarioRepository.save(horario);
     }
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +32,7 @@ public class AccesoAulaController {
     }
 
     @PostMapping
-    public AccesoAula createAccesoAula(AccesoAula accesoAula) {
+    public AccesoAula createAccesoAula(@RequestBody AccesoAula accesoAula) {
         try {
             return accesoAulaService.createAccesoAula(accesoAula);
         } catch (Exception e) {

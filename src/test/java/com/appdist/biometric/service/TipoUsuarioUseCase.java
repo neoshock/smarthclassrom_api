@@ -19,7 +19,7 @@ public class TipoUsuarioUseCase {
         TipoUsuario tipoUsuario = new TipoUsuario();
         tipoUsuario.setNombre("Alumno");
         tipoUsuario.setDescripcion("Alumno de la Universidad");
-        tipoUsuario.setIdTipoUsuario(1L);
+        tipoUsuario.setId(1L);
         TipoUsuario tipoUsuarioSaved = tipoUsuarioService.createTipoUsuario(tipoUsuario);
         
         assertNotEquals(null, tipoUsuarioSaved);
@@ -30,13 +30,13 @@ public class TipoUsuarioUseCase {
         TipoUsuario tipoUsuario = new TipoUsuario();
         tipoUsuario.setNombre("Alumno");
         tipoUsuario.setDescripcion("Alumno de la Universidad");
-        tipoUsuario.setIdTipoUsuario(1L);
+        tipoUsuario.setId(1L);
         TipoUsuario tipoUsuarioSaved = tipoUsuarioService.createTipoUsuario(tipoUsuario);
         tipoUsuarioSaved.setNombre("Profesor");
         tipoUsuarioSaved.setDescripcion("Profesor de la Universidad");
-        tipoUsuarioSaved.setIdTipoUsuario(2L);
-        tipoUsuarioService.updateTipoUsuario(tipoUsuarioSaved.getIdTipoUsuario(), tipoUsuarioSaved);
-        TipoUsuario tipoUsuarioUpdated = tipoUsuarioService.getTipoUsuarioById(tipoUsuarioSaved.getIdTipoUsuario());
+        tipoUsuarioSaved.setId(2L);
+        tipoUsuarioService.updateTipoUsuario(tipoUsuarioSaved.getId(), tipoUsuarioSaved);
+        TipoUsuario tipoUsuarioUpdated = tipoUsuarioService.getTipoUsuarioById(tipoUsuarioSaved.getId());
         assertNotEquals(null, tipoUsuarioUpdated);
     }
 
@@ -45,9 +45,9 @@ public class TipoUsuarioUseCase {
         TipoUsuario tipoUsuario = new TipoUsuario();
         tipoUsuario.setNombre("Alumno");
         tipoUsuario.setDescripcion("Alumno de la Universidad");
-        tipoUsuario.setIdTipoUsuario(1L);
+        tipoUsuario.setId(1L);
         TipoUsuario tipoUsuarioSaved = tipoUsuarioService.createTipoUsuario(tipoUsuario);
-        tipoUsuarioService.deleteTipoUsuario(tipoUsuarioSaved.getIdTipoUsuario());
+        tipoUsuarioService.deleteTipoUsuario(tipoUsuarioSaved.getId());
     }
 
     @Test
@@ -55,9 +55,9 @@ public class TipoUsuarioUseCase {
         TipoUsuario tipoUsuario = new TipoUsuario();
         tipoUsuario.setNombre("Alumno");
         tipoUsuario.setDescripcion("Alumno de la Universidad");
-        tipoUsuario.setIdTipoUsuario(1L);
+        tipoUsuario.setId(1L);
         TipoUsuario tipoUsuarioSaved = tipoUsuarioService.createTipoUsuario(tipoUsuario);
-        TipoUsuario tipoUsuarioUpdated = tipoUsuarioService.getTipoUsuarioById(tipoUsuarioSaved.getIdTipoUsuario());
+        TipoUsuario tipoUsuarioUpdated = tipoUsuarioService.getTipoUsuarioById(tipoUsuarioSaved.getId());
         assertNotEquals(null, tipoUsuarioUpdated);
     }
 
