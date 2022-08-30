@@ -47,8 +47,8 @@ public class MateriasService {
         return materiasRepository.getAsistenciasEstudiantes(materia_id, fecha);
     }
 
-    public Object setAsistenciaValida(boolean valido,Integer asistencia_id) {
-        return materiasRepository.updateAsistenciaValida(valido, asistencia_id);
+    public void setAsistenciaValida(boolean valido,Integer asistencia_id) {
+        materiasRepository.updateAsistenciaValida(valido, asistencia_id);
     }
     
 }
