@@ -138,4 +138,18 @@ public class MateriasController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping("/validar/{id}/{estado}")
+    public ResponseEntity<?> setAsistencia(@PathVariable(value = "id") Integer asistencia_id,@PathVariable(value = "estado") boolean valido){
+        try {
+            Object result = materiasService.setAsistenciaValida(valido, asistencia_id);
+            if (result != null){
+                return ResponseEntity.ok().build();
+            }else {
+                return ResponseEntity.notFound().build();
+            }
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

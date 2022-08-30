@@ -21,6 +21,9 @@ public interface MateriasRepository extends CrudRepository<Materia, Serializable
 
     @Query(value = "select a.id as asistencia_id, concat(u.nombre, ' ', u.apellido) as nombres,a.valido from asistencias a inner join usuarios u on a.usuario_id = u.id inner join tipo_usuario tp on u.id_tipo_usuario = tp.id where materia_id = ?1 and to_char(fecha_asistencia, 'yyyy-mm-dd') = ?2 and tp.nombre = 'alumno';", nativeQuery = true)
     ArrayList<Object> getAsistenciasEstudiantes(Integer materia_id, String fecha);
+
+    @Query(value =  "UPDATE public.asistencias SET valido = ?1 WHERE id = ?2;")
+    Object updateAsistenciaValida(boolean valido, Integer asistencia_id);
 }
     
 

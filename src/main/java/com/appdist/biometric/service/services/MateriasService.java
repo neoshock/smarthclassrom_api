@@ -46,5 +46,9 @@ public class MateriasService {
     public ArrayList<Object> getAlumnosAsistencia(Integer materia_id, String fecha){
         return materiasRepository.getAsistenciasEstudiantes(materia_id, fecha);
     }
+
+    public Object setAsistenciaValida(boolean valido,Integer asistencia_id) {
+        return materiasRepository.updateAsistenciaValida(valido, asistencia_id);
+    }
     
 }
