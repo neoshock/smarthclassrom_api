@@ -13,7 +13,7 @@ public class MateriasService {
     
     @Autowired
     MateriasRepository materiasRepository;
-
+    
     public ArrayList<Materia> getAllMaterias() {
         return (ArrayList<Materia>) materiasRepository.findAll();
     }
@@ -37,6 +37,14 @@ public class MateriasService {
 
     public ArrayList<Materia> getMateriasByEmail(String email) {
         return materiasRepository.getMateriasByEmail(email);
+    }
+
+    public ArrayList<Object> getAsistenciaByMateria(Integer materia_id){
+        return materiasRepository.getFechaAsistenciasByMateria(materia_id);
+    }
+
+    public ArrayList<Object> getAlumnosAsistencia(Integer materia_id, String fecha){
+        return materiasRepository.getAsistenciasEstudiantes(materia_id, fecha);
     }
     
 }

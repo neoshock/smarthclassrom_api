@@ -75,19 +75,21 @@ public class UsuariosController {
 
     @GetMapping("/authentication/{id}")
     public ResponseEntity<?> userAuthentication(@PathVariable(value = "id") Integer id) {
-        try{
+        try {
             Object request = usuariosService.userAuthentication(id);
             AuthRequest result = new AuthRequest();
             if (request != null) {
                 result.setResult((Object[]) request);
+
                 HashMap requestResult = new HashMap<>();
+
                 requestResult.put("nombre", result.getResult()[0]);
                 requestResult.put("acceso_valido", result.getResult()[1]);
                 return ResponseEntity.ok(requestResult);
-            }else {
+            } else {
                 return ResponseEntity.notFound().build();
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

@@ -1,6 +1,8 @@
 package com.appdist.biometric.service.controllers;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.appdist.biometric.service.models.Materia;
+import com.appdist.biometric.service.models.request.AsistenciaEstudianteResponse;
+import com.appdist.biometric.service.models.request.AsistenciaResponse;
 import com.appdist.biometric.service.models.request.MateriaRequest;
 import com.appdist.biometric.service.services.MateriasService;
 
 @RestController
 @RequestMapping("api/materias")
 public class MateriasController {
+
     @Autowired
     MateriasService materiasService;
 
@@ -86,6 +91,50 @@ public class MateriasController {
                 return ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}/fecha-asistencia")
+    public ResponseEntity<?> getFechasAsistenciasByMateria(@PathVariable(value = "id") Integer materia_id){
+        try {
+            ArrayList<Object> fechasAsistencias = materiasService.getAsistenciaByMateria(materia_id);
+            if(fechasAsistencias != null){
+                ArrayList<AsistenciaResponse> asistenciaResponses = new ArrayList<>();
+                for (Object request: fechasAsistencias){
+                    AsistenciaResponse asistencia = new AsistenciaResponse();
+                    asistencia.setFechaAsistencia((Date) request);
+                    asistenciaResponses.add(asistencia);
+                }
+                return ResponseEntity.ok(asistenciaResponses);
+            }else {
+                return ResponseEntity.notFound().build();
+            }
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}/asistencias/{fecha}")
+    public ResponseEntity<?> getAsistenciaMaterias(@PathVariable(value = "id") Integer materia_id, @PathVariable(value = "fecha") String fecha){
+        try{
+            ArrayList<Object> asistencias = materiasService.getAlumnosAsistencia(materia_id, fecha);
+            if (asistencias != null){
+                Object[] index;
+                ArrayList<AsistenciaEstudianteResponse> asistenciaEstudianteResponses = new ArrayList<>();
+                for(Object asistencia: asistencias){
+                    AsistenciaEstudianteResponse estudianteResponse = new AsistenciaEstudianteResponse();
+                    index = (Object[]) asistencia;
+                    estudianteResponse.setAsistenciaId((BigInteger) index[0]);
+                    estudianteResponse.setNombres((String) index[1]);
+                    estudianteResponse.setValido((boolean) index[2]);
+                    asistenciaEstudianteResponses.add(estudianteResponse);
+                }
+                return ResponseEntity.ok(asistenciaEstudianteResponses);
+            }else {
+                return ResponseEntity.notFound().build();
+            }
+        }catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
