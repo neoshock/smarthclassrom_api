@@ -44,5 +44,8 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     @JsonIgnore
     private List<AccesoAula> accesosAula;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Dispositivo> dispositivos;
     
 }
